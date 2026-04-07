@@ -1,0 +1,83 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <view class="title">选择难度</view>
+    <view class="subtitle">选择适合宝宝的难度等级</view>
+  </view>
+
+  <!-- 难度选择卡片 -->
+  <view class="difficulty-cards">
+    <view 
+      wx:for="{{difficultyList}}" 
+      wx:key="level"
+      class="difficulty-card {{item.level === currentLevel ? 'selected' : ''}} {{item.locked ? 'locked' : ''}}"
+      bindtap="selectDifficulty"
+      data-level="{{item.level}}"
+    >
+      <!-- 卡片头部 -->
+      <view class="card-header">
+        <view class="difficulty-icon">{{item.level}}</view>
+        <view class="difficulty-name">{{item.name}}</view>
+        <view class="difficulty-level">Level {{item.level}}</view>
+      </view>
+
+      <!-- 卡片内容 -->
+      <view class="card-content">
+        <view class="difficulty-desc">{{item.description}}</view>
+        
+        <!-- 难度特征 -->
+        <view class="features">
+          <view class="feature-item" wx:for="{{item.features}}" wx:key="*this" wx:for-item="feature">
+            <text class="feature-icon">-</text>
+            <text class="feature-text">{{feature}}</text>
+          </view>
+        </view>
+
+        <!-- 最佳成绩 -->
+        <view class="best-score" wx:if="{{item.bestScore}}">
+          <text class="score-label">最佳成绩:</text>
+          <text class="score-value">{{formatTime(item.bestScore)}}</text>
+        </view>
+
+        <!-- 锁定状态 -->
+        <view class="lock-overlay" wx:if="{{item.locked}}">
+          <text class="lock-text">已锁定：需要完成前一关</text>
+        </view>
+      </view>
+
+      <!-- 选择指示器 -->
+      <view class="selection-indicator" wx:if="{{item.level === currentLevel}}">
+        <text class="check-icon">OK</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="btn-secondary" bindtap="backToHome">返回首页</button>
+    <button class="btn-primary" bindtap="startGame" disabled="{{currentLevel === 0}}">
+      开始游戏
+    </button>
+  </view>
+
+  <!-- 游戏提示 -->
+  <view class="tips-section">
+    <view class="tips-title">
+      <text>游戏小贴士</text>
+    </view>
+    <view class="tips-content">
+      <view class="tip-item">
+        <text class="tip-number">1</text>
+        <text class="tip-text">从简单难度开始，逐步提升挑战</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-number">2</text>
+        <text class="tip-text">观察原图预览，记住图片特征</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-number">3</text>
+        <text class="tip-text">先完成边缘，再处理中间部分</text>
+      </view>
+    </view>
+  </view>
+</view>

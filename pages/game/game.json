@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "拼图游戏",
+  "backgroundColor": "#FFE5E5",
+  "navigationBarBackgroundColor": "#FF6B6B",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false
+}

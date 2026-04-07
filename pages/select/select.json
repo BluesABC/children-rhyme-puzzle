@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择难度",
+  "backgroundColor": "#FFE5E5",
+  "navigationBarBackgroundColor": "#FF6B6B",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false
+}

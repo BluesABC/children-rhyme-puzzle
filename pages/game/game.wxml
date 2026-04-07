@@ -1,0 +1,148 @@
+<view class="container" bindtap="onContainerTap">
+  <!-- 游戏头部信息 -->
+  <view class="game-header">
+    <view class="game-info">
+      <view class="info-item">
+        <text class="info-label">时间:</text>
+        <text class="info-value">{{formatTime(gameTime)}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">步数:</text>
+        <text class="info-value">{{moveCount}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">难度:</text>
+        <text class="info-value">{{difficultyText}}</text>
+      </view>
+    </view>
+    <view class="game-controls">
+      <button class="control-btn pill mute {{isBgmMuted ? 'muted' : ''}}" bindtap="toggleBgmMute">
+        <text class="control-icon">{{isBgmMuted ? '恢复' : '静音'}}</text>
+      </button>
+      <button class="control-btn pill settings" bindtap="openSettings">
+        <text class="control-icon">设置</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 游戏主区域 -->
+  <view class="game-main">
+    <!-- 原图预览 -->
+    <view class="preview-section">
+      <view class="preview-title">原图预览</view>
+      <view class="preview-container">
+        <image 
+          class="preview-image" 
+          src="{{currentImage}}" 
+          mode="aspectFit"
+          bindtap="openPreview"
+        ></image>
+        <view class="preview-hint">点击{{showPreview ? '隐藏' : '显示'}}原图</view>
+      </view>
+    </view>
+
+    <!-- 拼图游戏区域 -->
+    <view class="puzzle-section">
+      <view class="play-area" style="width: {{puzzleSize}}px;">
+        <view class="board" style="width: {{puzzleSize}}px; height: {{puzzleSize}}px;">
+          <view
+            wx:for="{{boardCells}}"
+            wx:key="idx"
+            class="board-cell"
+            style="width: {{pieceSize}}px; height: {{pieceSize}}px; left: {{item.x}}px; top: {{item.y}}px;"
+          ></view>
+
+          <view
+            wx:for="{{pieces}}"
+            wx:key="id"
+            wx:if="{{item.placed}}"
+            class="placed-piece"
+            style="width: {{pieceSize}}px; height: {{pieceSize}}px; left: {{item.x}}px; top: {{item.y}}px;"
+          >
+            <image
+              class="piece-image"
+              src="{{currentImage}}"
+              style="width: {{puzzleSize}}px; height: {{puzzleSize}}px; margin-left: -{{item.bgX}}px; margin-top: -{{item.bgY}}px;"
+              mode="aspectFill"
+            ></image>
+          </view>
+        </view>
+
+        <view class="tray" style="width: {{puzzleSize}}px; height: {{trayHeight}}px;">
+          <view class="tray-title">把拼图块拖到上方空白格</view>
+          <view
+            wx:for="{{pieces}}"
+            wx:key="id"
+            wx:if="{{!item.placed}}"
+            class="draggable-piece {{draggingPieceId===item.id ? 'dragging' : ''}}"
+            style="width: {{pieceSize}}px; height: {{pieceSize}}px; left: {{item.x}}px; top: {{item.y}}px;"
+            data-id="{{item.id}}"
+            bindtouchstart="onPieceTouchStart"
+            catchtouchmove="onPieceTouchMove"
+            bindtouchend="onPieceTouchEnd"
+          >
+            <image
+              class="piece-image"
+              src="{{currentImage}}"
+              style="width: {{puzzleSize}}px; height: {{puzzleSize}}px; margin-left: -{{item.bgX}}px; margin-top: -{{item.bgY}}px;"
+              mode="aspectFill"
+            ></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏完成弹窗 -->
+  <view class="completion-modal" wx:if="{{showCompletion}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">恭喜完成！</text>
+      </view>
+      <view class="modal-body">
+        <view class="completion-stats">
+          <view class="stat-item">
+            <text class="stat-label">完成时间:</text>
+            <text class="stat-value">{{formatTime(gameTime)}}</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-label">移动步数:</text>
+            <text class="stat-value">{{moveCount}}</text>
+          </view>
+          <view class="stat-item" wx:if="{{isNewRecord}}">
+            <text class="stat-label new-record">新纪录！</text>
+          </view>
+        </view>
+        <view class="completion-stars">星级：{{starRating}}/3</view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn secondary" bindtap="restartGame">再玩一次</button>
+        <button class="modal-btn primary" bindtap="nextLevel">下一关</button>
+        <button class="modal-btn secondary" bindtap="backToHome">返回首页</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 暂停弹窗 -->
+  <view class="pause-modal" wx:if="{{isPaused && !showCompletion}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">游戏暂停</text>
+      </view>
+      <view class="modal-body">
+        <text class="pause-text">游戏已暂停，点击继续按钮恢复游戏</text>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn primary" bindtap="resumeGame">继续游戏</button>
+        <button class="modal-btn secondary" bindtap="restartGame">重新开始</button>
+        <button class="modal-btn secondary" bindtap="backToHome">返回首页</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="preview-modal" wx:if="{{showPreview}}" bindtap="closePreview">
+    <view class="preview-modal-content" catchtap="noop">
+      <image class="preview-modal-image" src="{{currentImage}}" mode="widthFix" catchtap="noop"></image>
+    </view>
+  </view>
+</view>

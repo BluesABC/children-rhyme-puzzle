@@ -1,0 +1,517 @@
+/* 游戏页面样式 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFE5E5 0%, #FFF5E5 100%);
+  padding: 20rpx;
+  box-sizing: border-box;
+  /* 隐藏滚动条 */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 隐藏滚动条样式 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 微信小程序隐藏滚动条 */
+.container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 游戏头部 */
+.game-header {
+  background: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-info {
+  display: flex;
+  gap: 30rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #888;
+  margin-bottom: 5rpx;
+}
+
+.info-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+}
+
+.game-controls {
+  display: flex;
+  gap: 15rpx;
+}
+
+.control-btn {
+  width: 88rpx;
+  height: 80rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 10rpx rgba(255, 107, 107, 0.3);
+  padding: 0;
+  margin: 0;
+}
+
+ .control-btn.pill {
+  width: 160rpx;
+  height: 80rpx;
+  padding: 0 26rpx;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF6B6B, #FF9AA2);
+  box-shadow: 0 10rpx 22rpx rgba(255, 107, 107, 0.28);
+ }
+
+ .control-btn.pill.settings {
+  width: 180rpx;
+  background: linear-gradient(135deg, #FFFFFF, #FFF5F5);
+  border: 2rpx solid rgba(255, 107, 107, 0.35);
+  box-shadow: 0 10rpx 22rpx rgba(0, 0, 0, 0.08);
+  padding: 0 26rpx;
+  justify-content: center;
+ }
+
+ .control-btn.pill.mute {
+  width: 150rpx;
+  background: linear-gradient(135deg, #FFFFFF, #F3F6FF);
+  border: 2rpx solid rgba(88, 112, 255, 0.28);
+  box-shadow: 0 10rpx 22rpx rgba(0, 0, 0, 0.08);
+  padding: 0 22rpx;
+  justify-content: center;
+ }
+
+ .control-btn.pill.mute.muted {
+  background: linear-gradient(135deg, #FFFFFF, #F5F5F5);
+  border-color: rgba(140, 140, 140, 0.35);
+ }
+
+.control-btn:active {
+  transform: scale(0.95);
+}
+
+.control-icon {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.settings .control-icon {
+  color: #FF6B6B;
+}
+
+.mute .control-icon {
+  color: #586FFF;
+}
+
+.mute.muted .control-icon {
+  color: #888;
+}
+
+/* 游戏主区域 */
+.game-main {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 预览区域 */
+.preview-section {
+  flex: 0 0 200rpx;
+  background: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.preview-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+
+.preview-container {
+  position: relative;
+}
+
+.preview-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  border: 3rpx solid #FFD0D0;
+  transition: opacity 0.3s ease;
+}
+
+.preview-hint {
+  font-size: 20rpx;
+  color: #888;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+ .preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+ }
+
+ .preview-modal-content {
+  width: 92vw;
+  height: auto;
+  max-height: 86vh;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  box-shadow: 0 24rpx 56rpx rgba(0, 0, 0, 0.28);
+  overflow: auto;
+ }
+
+ .preview-modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 18rpx;
+ }
+
+/* 拼图区域 */
+.puzzle-section {
+  flex: 1;
+  background: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ .play-area {
+   display: flex;
+   flex-direction: column;
+   gap: 20rpx;
+ }
+
+ .board {
+   position: relative;
+   background: #F8F8F8;
+   border-radius: 10rpx;
+   border: 3rpx solid #FFD0D0;
+   box-shadow: inset 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+   z-index: 1;
+ }
+
+ .board-cell {
+   position: absolute;
+   border: 2rpx dashed #FFB0B0;
+   border-radius: 6rpx;
+   box-sizing: border-box;
+   background: rgba(255, 245, 245, 0.8);
+ }
+
+ .placed-piece {
+  position: absolute;
+  border: 1rpx solid #C8E6C9;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 0 10rpx rgba(76, 175, 80, 0.25);
+  overflow: hidden;
+}
+
+ .tray {
+   position: relative;
+   background: #FFF5F5;
+   border-radius: 16rpx;
+   border: 2rpx solid #FFD0D0;
+   overflow: visible;
+   z-index: 2;
+ }
+
+ .tray-title {
+   font-size: 24rpx;
+   color: #FF6B6B;
+   font-weight: bold;
+   padding: 12rpx 16rpx;
+ }
+
+ .draggable-piece {
+   position: absolute;
+   border: 1rpx solid #FFD0D0;
+   border-radius: 6rpx;
+   box-sizing: border-box;
+   background: white;
+   transition: transform 120ms ease;
+   will-change: transform, left, top;
+   overflow: hidden;
+ }
+
+ .draggable-piece.dragging {
+   z-index: 999;
+   transition: none;
+   box-shadow: 0 10rpx 24rpx rgba(0, 0, 0, 0.18);
+ }
+
+ .draggable-piece:active {
+   transform: scale(0.98);
+   z-index: 200;
+ }
+
+.puzzle-container {
+  position: relative;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  border: 3rpx solid #FFD0D0;
+  box-shadow: inset 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 拼图块 */
+.puzzle-piece {
+  position: absolute;
+  border: 1rpx solid #FFD0D0;
+  border-radius: 5rpx;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: white;
+}
+
+.puzzle-piece.empty {
+  background: #FFF5F5;
+  border: 2rpx dashed #FFB0B0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.puzzle-piece.correct {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10rpx rgba(76, 175, 80, 0.3);
+}
+
+.puzzle-piece:active {
+  transform: scale(0.95);
+  z-index: 100;
+}
+
+.piece-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 4rpx;
+  pointer-events: none;
+  display: block;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #FFB0B0;
+  font-weight: bold;
+}
+
+/* 弹窗样式 */
+.completion-modal,
+.pause-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin: 40rpx;
+  max-width: 600rpx;
+  width: 90%;
+  box-shadow: 0 20rpx 40rpx rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.modal-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+}
+
+.modal-body {
+  margin-bottom: 30rpx;
+}
+
+.completion-stats {
+  margin-bottom: 20rpx;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+}
+
+.stat-label {
+  color: #666;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: #333;
+}
+
+.new-record {
+  color: #FF6B6B !important;
+  font-weight: bold;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.completion-stars {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.star {
+  font-size: 60rpx;
+  margin: 0 10rpx;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.star.active {
+  opacity: 1;
+  animation: starPulse 0.5s ease-out;
+}
+
+@keyframes starPulse {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pause-text {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.modal-btn {
+  padding: 25rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.modal-btn.primary {
+  background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+  color: white;
+  box-shadow: 0 8rpx 20rpx rgba(255, 107, 107, 0.3);
+}
+
+.modal-btn.secondary {
+  background: white;
+  color: #FF6B6B;
+  border: 3rpx solid #FF6B6B;
+}
+
+.modal-btn:active {
+  transform: translateY(2rpx);
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+  .game-main {
+    flex-direction: column;
+  }
+  
+  .preview-section {
+    flex: none;
+    width: 100%;
+  }
+  
+  .preview-container {
+    display: flex;
+    align-items: center;
+    gap: 20rpx;
+  }
+  
+  .preview-image {
+    width: 120rpx;
+    height: 120rpx;
+  }
+  
+  .game-info {
+    flex-direction: column;
+    gap: 10rpx;
+  }
+  
+  .info-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

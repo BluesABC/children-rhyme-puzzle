@@ -1,0 +1,65 @@
+<view class="container">
+  <!-- 头部标题区域 -->
+  <view class="header fade-in">
+    <view class="logo">
+      <text class="logo-text">🧩</text>
+    </view>
+    <view class="title">儿童歌谣拼图</view>
+    <view class="subtitle">让宝宝在快乐中学习成长</view>
+  </view>
+
+  <!-- 主要内容区域 -->
+  <view class="main-content">
+    <!-- 开始游戏按钮 -->
+    <view class="button-group bounce">
+      <button class="btn-primary" bindtap="startGame">
+        <text class="btn-icon">🎮</text>
+        开始游戏
+      </button>
+    </view>
+
+    <!-- 功能按钮组 -->
+    <view class="feature-buttons">
+      <view class="feature-item fade-in" bindtap="selectLevel">
+        <view class="feature-icon">🎯</view>
+        <view class="feature-text">选择难度</view>
+      </view>
+      
+      <view class="feature-item fade-in" bindtap="viewScores">
+        <view class="feature-icon">🏆</view>
+        <view class="feature-text">最佳成绩</view>
+      </view>
+      
+      <view class="feature-item fade-in" bindtap="aboutGame">
+        <view class="feature-icon">📖</view>
+        <view class="feature-text">游戏说明</view>
+      </view>
+    </view>
+
+    <!-- 游戏统计 -->
+    <view class="stats-card card fade-in">
+      <view class="stats-title">游戏统计</view>
+      <view class="stats-content">
+        <view class="stat-item">
+          <view class="stat-number">{{totalGames}}</view>
+          <view class="stat-label">总游戏次数</view>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <view class="stat-number">{{completedGames}}</view>
+          <view class="stat-label">完成次数</view>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <view class="stat-number">{{currentLevel}}</view>
+          <view class="stat-label">当前等级</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="footer">
+    <view class="decoration">🌈 🌟 🎈 🎪 🎨</view>
+  </view>
+</view>

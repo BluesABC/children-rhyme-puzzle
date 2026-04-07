@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <view class="title">选择童谣</view>
+    <view class="subtitle">选择喜欢的童谣主题开始拼图</view>
+  </view>
+
+  <view class="difficulty-row card">
+    <view class="row-title">选择难度</view>
+    <view class="difficulty-buttons">
+      <button class="diff-btn {{difficulty===1?'active':''}}" data-diff="1" bindtap="setDifficulty">简单 3x3</button>
+      <button class="diff-btn {{difficulty===2?'active':''}}" data-diff="2" bindtap="setDifficulty">中等 4x4</button>
+      <button class="diff-btn {{difficulty===3?'active':''}}" data-diff="3" bindtap="setDifficulty">困难 5x5</button>
+    </view>
+  </view>
+
+  <view class="rhyme-list">
+    <view wx:for="{{rhymes}}" wx:key="id" class="rhyme-card card">
+      <view class="rhyme-left">
+        <image 
+          class="rhyme-cover {{imageLoadStatus[item.id]}}"
+          src="{{item.cover}}"
+          data-id="{{item.id}}"
+          mode="aspectFill"
+          lazy-load="{{true}}"
+          bindload="onImageLoad"
+          binderror="onImageError"
+        ></image>
+        <!-- 加载中状态 -->
+        <view wx:if="{{imageLoadStatus[item.id] === 'loading'}}" class="loading-hint">
+          <text class="loading-text">加载中...</text>
+        </view>
+      </view>
+      <view class="rhyme-right">
+        <view class="rhyme-name">{{item.name}}</view>
+        <view class="rhyme-desc">{{item.desc}}</view>
+        <view class="rhyme-actions">
+          <button class="btn-primary small" data-id="{{item.id}}" bindtap="startGame">开始</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="btn-secondary" bindtap="backHome">返回首页</button>
+  </view>
+</view>
