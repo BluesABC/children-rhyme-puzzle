@@ -1,0 +1,18 @@
+﻿{
+  "name": "children-rhyme-puzzle",
+  "version": "1.0.0",
+  "description": "儿童歌谣拼图游戏",
+  "main": "main.js",
+  "scripts": {
+    "dev:h5": "uni",
+    "build:h5": "uni build"
+  },
+  "keywords": [
+    "uniapp",
+    "儿童游戏",
+    "拼图游戏",
+    "教育游戏"
+  ],
+  "author": "",
+  "license": "MIT"
+}
